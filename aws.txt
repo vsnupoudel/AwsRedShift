@@ -1,0 +1,26 @@
+# Connect from outside
+JDBC - jdbc:redshift://redshift-cluster-1.c7tgmj4hbh68.ap-south-1.redshift.amazonaws.com:5439/dev
+ODBC - Driver={Amazon Redshift (x64)}; Server=redshift-cluster-1.c7tgmj4hbh68.ap-south-1.redshift.amazonaws.com; Database=dev
+
+# DDL
+
+SET search_path to stocks;
+DROP TABLE bajaj_stocks_date;
+CREATE TABLE IF NOT EXISTS bajaj_stocks_date
+( 
+Date	DATE	,
+Open_Price	NUMERIC(20,10)	,
+High_Price	NUMERIC(20,10)	,
+Low_Price	NUMERIC(20,10)	,
+Close_Price	NUMERIC(20,10)	,
+WAP	NUMERIC(20,10)	,	
+Noof_Shares	NUMERIC(20,10),
+No_of_Trades	NUMERIC(20,10),
+Total_Turnover_Rs	NUMERIC(20,10),
+Deliverable_Quantity	NUMERIC(20,10),
+Percnt_Deli_Qty_to_Traded_Qty	NUMERIC(20,10)	,
+Spread_High_Low	NUMERIC(20,10)	,
+Spread_Close_Open	NUMERIC(20,10)	
+)
+# copy generated after GUI
+COPY test.stocks.bajaj_stocks_date FROM 's3://bpvsnupoudel-for-redshift/Bajaj.csv' IAM_ROLE 'arn:aws:iam::830398531290:role/service-role/AmazonRedshift-CommandsAccessRole-20230314T224550' FORMAT AS CSV DELIMITER ',' IGNOREHEADER 1 DATEFORMAT 'DD/MM/YY' REGION AS 'ap-south-1'

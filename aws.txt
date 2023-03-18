@@ -24,3 +24,5 @@ Spread_Close_Open	NUMERIC(20,10)
 )
 # copy generated after GUI
 COPY test.stocks.bajaj_stocks_date FROM 's3://bpvsnupoudel-for-redshift/Bajaj.csv' IAM_ROLE 'arn:aws:iam::830398531290:role/service-role/AmazonRedshift-CommandsAccessRole-20230314T224550' FORMAT AS CSV DELIMITER ',' IGNOREHEADER 1 DATEFORMAT 'DD/MM/YY' REGION AS 'ap-south-1'
+
+# edit incoming vpc rules for access from said IPs or anywhere
